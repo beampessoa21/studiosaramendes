@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Inauguração · Sara Mendes Studio de Beleza · 21 de Junho de 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════
+   DESIGN DIRECTION:
+   Luxury editorial · preto fosco + champagne dourado
+   Tipografia serifada refinada · espaço generoso
+   Grain texture overlay · luzes quentes sutis
+   ══════════════════════════════════════ */
+
+:root {
+  --gold:     #C4A053;
+  --gold-lt:  #D4B06A;
+  --gold-dim: rgba(196,160,83,.18);
+  --gold-line:rgba(196,160,83,.30);
+  --black:    #080806;
+  --surface:  #0E0D0B;
+  --wood:     #8C6840;
+  --wood-dim: rgba(140,104,64,.12);
+  --cream:    #F0E8D8;
+  --muted:    #7A7060;
+  --light:    #C8BCA8;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--black);
+  color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── grain overlay ── */
+body::before {
+  content:'';
+  position:fixed; inset:0; z-index:9999;
+  pointer-events:none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 180px;
+  opacity: .55;
+}
+
+/* ── custom cursor ── */
+.cursor {
+  position: fixed; top:0; left:0; z-index:10000;
+  width:10px; height:10px; border-radius:50%;
+  background: var(--gold);
+  pointer-events:none; transition: transform .15s ease;
+  mix-blend-mode: difference;
+}
+.cursor-ring {
+  position: fixed; top:0; left:0; z-index:9999;
+  width:38px; height:38px; border-radius:50%;
+  border:1px solid var(--gold-line);
+  pointer-events:none;
+  transition: transform .45s cubic-bezier(.25,.46,.45,.94);
+}
+
+/* ══ UTILS ══ */
+.serif { font-family:'Cormorant Garamond', serif; }
+.gold  { color: var(--gold); }
+.line-gold { display:inline-block; width:40px; height:1px; background:var(--gold); vertical-align:middle; }
+
+/* ══ NAV ══ */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:500;
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 1.6rem 3rem;
+  background: linear-gradient(to bottom, rgba(8,8,6,.9) 0%, transparent 100%);
+}
+.nav-mono {
+  width:44px; height:44px; border-radius:50%;
+  border:1px solid var(--gold-line);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05rem; font-weight:500; letter-spacing:.05em;
+  color:var(--gold);
+}
+.nav-name {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem; font-weight:400; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--cream);
+}
+.nav-cta-link {
+  font-size:.72rem; font-weight:400; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--gold);
+  text-decoration:none; border-bottom:1px solid var(--gold-line);
+  padding-bottom:2px; transition:border-color .3s;
+}
+.nav-cta-link:hover { border-color:var(--gold); }
+
+/* ══ HERO ══ */
+.hero {
+  min-height: 100svh;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  text-align:center;
+  position:relative;
+  padding: 8rem 2rem 4rem;
+  overflow:hidden;
+}
+
+/* warm spotlight */
+.hero::before {
+  content:'';
+  position:absolute; top:-20%; left:50%; transform:translateX(-50%);
+  width:700px; height:700px;
+  background: radial-gradient(ellipse, rgba(196,160,83,.08) 0%, transparent 70%);
+  pointer-events:none;
+}
+
+.hero-eyebrow {
+  font-size:.68rem; font-weight:400; letter-spacing:.35em;
+  text-transform:uppercase; color:var(--gold);
+  margin-bottom:2.4rem;
+  opacity:0; animation: revealUp .9s .2s ease forwards;
+}
+.hero-eyebrow span { margin:0 .8rem; opacity:.5; }
+
+.hero-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size: clamp(3.8rem, 9vw, 9rem);
+  font-weight:300; line-height:.92;
+  letter-spacing:-.01em;
+  opacity:0; animation: revealUp .9s .4s ease forwards;
+}
+.hero-title .name-big { display:block; }
+.hero-title .studio-line {
+  display:block;
+  font-size: clamp(1rem, 2.2vw, 2rem);
+  font-family:'Jost',sans-serif;
+  font-weight:200; letter-spacing:.5em;
+  text-transform:uppercase;
+  color:var(--light); margin-top:.9rem;
+}
+
+/* monogram circle */
+.mono-hero {
+  margin: 3.5rem auto 0;
+  width:126px; height:126px; border-radius:50%;
+  border:1px solid var(--gold-line);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:6px;
+  position:relative;
+  opacity:0; animation: revealUp .9s .6s ease forwards;
+  background: radial-gradient(circle, rgba(196,160,83,.05) 0%, transparent 70%);
+}
+.mono-hero::before {
+  content:'';
+  position:absolute; inset:-9px; border-radius:50%;
+  border:1px solid var(--gold-dim);
+  animation: spinRing 18s linear infinite;
+}
+.mono-hero::after {
+  content:'';
+  position:absolute; inset:-22px; border-radius:50%;
+  border:1px dashed rgba(196,160,83,.09);
+  animation: spinRing 34s linear infinite reverse;
+}
+.mono-scissors { width:40px; height:40px; }
+.mono-sm {
+  font-family:'Cormorant Garamond',serif;
+  font-size:.88rem; font-weight:400; letter-spacing:.26em;
+  color:var(--gold); line-height:1;
+}
+@keyframes spinRing {
+  to { transform:rotate(360deg); }
+}
+
+.hero-date {
+  margin-top:3.5rem;
+  font-size:.68rem; letter-spacing:.32em; text-transform:uppercase;
+  color:var(--muted);
+  opacity:0; animation: revealUp .9s .8s ease forwards;
+}
+.hero-date strong { color:var(--gold); font-weight:400; }
+
+/* scroll cue */
+.scroll-cue {
+  position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:.5rem;
+  opacity:0; animation: revealUp .9s 1.4s ease forwards;
+}
+.scroll-cue span { font-size:.6rem; letter-spacing:.3em; text-transform:uppercase; color:var(--muted); }
+.scroll-line {
+  width:1px; height:48px;
+  background:linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%,100% { opacity:.3; } 50% { opacity:1; }
+}
+
+/* ══ COUNTDOWN ══ */
+.countdown-section {
+  padding: 5rem 2rem;
+  text-align:center;
+  position:relative;
+}
+.countdown-section::before {
+  content:'';
+  position:absolute; top:0; left:50%; transform:translateX(-50%);
+  width:1px; height:80px;
+  background:linear-gradient(to bottom, transparent, var(--gold-line));
+}
+
+.section-label {
+  font-size:.65rem; letter-spacing:.35em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:1.5rem;
+}
+
+.countdown-grid {
+  display:flex; gap:0; justify-content:center; align-items:stretch;
+  margin-top:2.5rem;
+}
+.count-block {
+  padding: 2rem 2.8rem;
+  border:1px solid var(--gold-line);
+  position:relative; text-align:center;
+  background: rgba(196,160,83,.03);
+}
+.count-block + .count-block { margin-left:-1px; }
+.count-num {
+  font-family:'Cormorant Garamond',serif;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight:300; line-height:1; color:var(--gold);
+  display:block;
+}
+.count-label {
+  font-size:.6rem; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--muted); margin-top:.5rem; display:block;
+}
+
+/* ══ DIVIDER ══ */
+.divider {
+  max-width:900px; margin:0 auto;
+  border:none; border-top:1px solid var(--gold-line);
+}
+
+/* ══ SOBRE ══ */
+.sobre {
+  max-width:1100px; margin:0 auto;
+  padding:7rem 2rem;
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:6rem; align-items:center;
+}
+.sobre-text .overline {
+  font-size:.65rem; letter-spacing:.35em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:1.8rem; display:block;
+}
+.sobre-text h2 {
+  font-family:'Cormorant Garamond',serif;
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  font-weight:300; line-height:1.15;
+  letter-spacing:-.01em;
+  margin-bottom:1.8rem;
+}
+.sobre-text h2 em { font-style:italic; color:var(--gold); }
+.sobre-text p {
+  color:var(--light); line-height:1.9; font-size:.92rem;
+  font-weight:300; margin-bottom:1.2rem;
+}
+
+.sobre-visual {
+  position:relative; display:flex;
+  align-items:center; justify-content:center;
+}
+.sobre-frame {
+  width:100%; aspect-ratio:3/4; max-width:340px;
+  border:1px solid var(--gold-line);
+  background:linear-gradient(145deg, #141210 0%, #0E0C0A 100%);
+  position:relative; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+}
+.sobre-frame::before {
+  content:'';
+  position:absolute; top:0; left:0; right:0; height:50%;
+  background:linear-gradient(to bottom, rgba(196,160,83,.06), transparent);
+}
+.frame-mono {
+  font-family:'Cormorant Garamond',serif;
+  font-size:8rem; font-weight:300;
+  color:rgba(196,160,83,.08); letter-spacing:.1em;
+  user-select:none;
+}
+.frame-tag {
+  position:absolute; bottom:1.5rem; left:1.5rem;
+  font-size:.6rem; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--gold);
+}
+.frame-corner {
+  position:absolute; width:20px; height:20px;
+  border-color:var(--gold-line); border-style:solid; border-width:0;
+}
+.frame-corner.tl { top:12px; left:12px; border-top-width:1px; border-left-width:1px; }
+.frame-corner.tr { top:12px; right:12px; border-top-width:1px; border-right-width:1px; }
+.frame-corner.bl { bottom:12px; left:12px; border-bottom-width:1px; border-left-width:1px; }
+.frame-corner.br { bottom:12px; right:12px; border-bottom-width:1px; border-right-width:1px; }
+
+.sobre-accent {
+  position:absolute; top:-2rem; right:-2rem;
+  width:120px; height:120px; border-radius:50%;
+  background:radial-gradient(circle, rgba(196,160,83,.12), transparent 70%);
+}
+
+/* ══ SERVIÇOS ══ */
+.servicos {
+  padding:7rem 2rem;
+  background:linear-gradient(to bottom, transparent, rgba(196,160,83,.03) 50%, transparent);
+}
+.servicos-inner { max-width:1100px; margin:0 auto; }
+.servicos-header { text-align:center; margin-bottom:4rem; }
+.servicos-header h2 {
+  font-family:'Cormorant Garamond',serif;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight:300; letter-spacing:-.01em;
+  margin-top:1rem;
+}
+.servicos-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+  border:1px solid var(--gold-line);
+}
+.serv-card {
+  padding:2.5rem 2rem;
+  background:var(--surface);
+  transition: background .35s;
+  position:relative; overflow:hidden;
+}
+.serv-card::after {
+  content:'';
+  position:absolute; bottom:0; left:0; right:0; height:1px;
+  background:linear-gradient(to right, transparent, var(--gold-line), transparent);
+  transform:scaleX(0); transition:transform .4s;
+}
+.serv-card:hover { background: rgba(196,160,83,.04); }
+.serv-card:hover::after { transform:scaleX(1); }
+.serv-num {
+  font-family:'Cormorant Garamond',serif;
+  font-size:.85rem; color:var(--gold); opacity:.6;
+  letter-spacing:.1em; margin-bottom:1.4rem; display:block;
+}
+.serv-card h3 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.55rem; font-weight:400;
+  margin-bottom:.8rem; color:var(--cream);
+}
+.serv-card p { font-size:.82rem; color:var(--muted); line-height:1.75; }
+
+/* ══ OFERTA INAUGURAÇÃO ══ */
+.oferta {
+  padding:7rem 2rem;
+  text-align:center; position:relative;
+}
+.oferta-box {
+  max-width:780px; margin:0 auto;
+  border:1px solid var(--gold-line);
+  padding:4rem 3.5rem;
+  background:linear-gradient(135deg, rgba(196,160,83,.05), rgba(140,104,64,.04));
+  position:relative;
+}
+.oferta-box::before, .oferta-box::after {
+  content:'·  ·  ·'; font-size:.7rem; letter-spacing:.3em;
+  color:var(--gold); position:absolute;
+}
+.oferta-box::before { top:-1px; left:50%; transform:translate(-50%,-50%); background:var(--black); padding:0 1rem; }
+.oferta-box::after { bottom:-1px; left:50%; transform:translate(-50%,50%); background:var(--black); padding:0 1rem; }
+
+.oferta-tag {
+  display:inline-block;
+  background: var(--gold); color:var(--black);
+  font-size:.62rem; font-weight:500; letter-spacing:.22em; text-transform:uppercase;
+  padding:.4rem 1.2rem; margin-bottom:2rem;
+}
+.oferta h2 {
+  font-family:'Cormorant Garamond',serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  font-weight:300; line-height:1.1; margin-bottom:1.5rem;
+}
+.oferta h2 em { font-style:italic; color:var(--gold); }
+.oferta p { color:var(--light); line-height:1.85; font-size:.9rem; max-width:520px; margin:0 auto; }
+
+.oferta-beneficios {
+  display:flex; flex-wrap:wrap; gap:1rem;
+  justify-content:center; margin:2.5rem 0 3rem;
+}
+.beneficio {
+  border:1px solid var(--gold-line);
+  padding:.55rem 1.2rem; font-size:.72rem;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:var(--light);
+}
+.beneficio span { color:var(--gold); margin-right:.4rem; }
+
+/* ══ CTA BUTTON ══ */
+.btn-gold {
+  display:inline-flex; align-items:center; gap:.8rem;
+  background:var(--gold); color:var(--black);
+  font-family:'Jost',sans-serif;
+  font-size:.78rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase;
+  padding:1.1rem 2.8rem; text-decoration:none;
+  transition:background .3s, transform .3s;
+  border:none; cursor:none;
+}
+.btn-gold:hover { background:var(--gold-lt); transform:translateY(-2px); }
+.btn-outline {
+  display:inline-flex; align-items:center; gap:.8rem;
+  background:transparent; color:var(--gold);
+  font-family:'Jost',sans-serif;
+  font-size:.78rem; font-weight:400; letter-spacing:.2em; text-transform:uppercase;
+  padding:1.05rem 2.4rem; text-decoration:none;
+  border:1px solid var(--gold-line);
+  transition:border-color .3s, transform .3s;
+  cursor:none;
+}
+.btn-outline:hover { border-color:var(--gold); transform:translateY(-2px); }
+
+/* ══ EXPERIÊNCIA ══ */
+.experiencia {
+  padding:7rem 2rem;
+  max-width:1100px; margin:0 auto;
+}
+.exp-header { margin-bottom:4rem; }
+.exp-header h2 {
+  font-family:'Cormorant Garamond',serif;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight:300; line-height:1.15;
+  max-width:600px;
+}
+.exp-header h2 em { font-style:italic; color:var(--gold); }
+.exp-grid {
+  display:grid; grid-template-columns:repeat(2,1fr);
+  gap:1.5rem;
+}
+.exp-item {
+  padding:2rem;
+  border-left:1px solid var(--gold-line);
+  transition:border-color .3s;
+}
+.exp-item:hover { border-color:var(--gold); }
+.exp-icon { font-size:1.5rem; margin-bottom:1rem; }
+.exp-item h3 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem; font-weight:400; margin-bottom:.6rem;
+}
+.exp-item p { font-size:.83rem; color:var(--muted); line-height:1.75; }
+
+/* ══ AGENDA / FORMULÁRIO ══ */
+.agenda {
+  padding:7rem 2rem;
+  background:linear-gradient(to bottom, transparent, rgba(196,160,83,.03) 50%, transparent);
+}
+.agenda-inner {
+  max-width:620px; margin:0 auto; text-align:center;
+}
+.agenda-inner h2 {
+  font-family:'Cormorant Garamond',serif;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight:300; margin-bottom:1rem;
+}
+.agenda-inner h2 em { font-style:italic; color:var(--gold); }
+.agenda-inner .sub {
+  color:var(--muted); font-size:.85rem; line-height:1.8;
+  margin-bottom:3rem;
+}
+
+.form-group {
+  margin-bottom:1.2rem; text-align:left;
+}
+.form-group label {
+  font-size:.62rem; letter-spacing:.25em; text-transform:uppercase;
+  color:var(--gold); display:block; margin-bottom:.6rem;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width:100%; background:transparent;
+  border:none; border-bottom:1px solid var(--gold-line);
+  color:var(--cream); font-family:'Jost',sans-serif;
+  font-size:.88rem; font-weight:300;
+  padding:.8rem 0; outline:none;
+  transition:border-color .3s;
+  -webkit-appearance:none;
+}
+.form-group select option { background:var(--surface); }
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color:var(--gold); }
+.form-group textarea { resize:none; height:80px; }
+.form-note {
+  font-size:.72rem; color:var(--muted); margin-bottom:2rem;
+  text-align:left; line-height:1.7;
+}
+.form-submit { margin-top:2rem; }
+
+/* ══ FOOTER ══ */
+footer {
+  border-top:1px solid var(--gold-line);
+  padding:3.5rem 2rem 2.5rem;
+  text-align:center;
+}
+.footer-mono {
+  width:52px; height:52px; border-radius:50%;
+  border:1px solid var(--gold-line);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem; color:var(--gold);
+  margin:0 auto 1.2rem;
+}
+.footer-name {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem; font-weight:400; letter-spacing:.08em;
+  margin-bottom:.3rem;
+}
+.footer-studio {
+  font-size:.6rem; letter-spacing:.35em; text-transform:uppercase;
+  color:var(--muted);
+}
+.footer-line {
+  width:1px; height:40px;
+  background:linear-gradient(to bottom, var(--gold-line), transparent);
+  margin:1.5rem auto;
+}
+.footer-copy {
+  font-size:.65rem; letter-spacing:.15em; text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* ══ ANIMATIONS ══ */
+@keyframes revealUp {
+  from { opacity:0; transform:translateY(24px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+.reveal {
+  opacity:0; transform:translateY(28px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ══ MOBILE ══ */
+@media(max-width:768px) {
+  nav { padding:1.2rem 1.5rem; }
+  .nav-name { display:none; }
+  .sobre { grid-template-columns:1fr; gap:3rem; padding:5rem 1.5rem; }
+  .sobre-visual { display:none; }
+  .servicos-grid { grid-template-columns:1fr; }
+  .serv-card + .serv-card { border-top:1px solid var(--gold-line); }
+  .exp-grid { grid-template-columns:1fr; }
+  .oferta-box { padding:3rem 1.5rem; }
+  .countdown-grid { gap:0; }
+  .count-block { padding:1.5rem 1.2rem; }
+  body { cursor:auto; }
+  .cursor, .cursor-ring { display:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-mono">SM</div>
+  <div class="nav-name">Sara Mendes Studio de Beleza</div>
+  <a href="#agenda" class="nav-cta-link">Reservar horário</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-eyebrow">Inauguração <span>·</span> 21 de Junho de 2026 <span>·</span> Studio de Beleza</div>
+  <h1 class="hero-title serif">
+    <span class="name-big">Sara Mendes</span>
+    <span class="studio-line">Studio de Beleza</span>
+  </h1>
+  <div class="mono-hero">
+    <svg class="mono-scissors" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#C4A053" stroke-linecap="round" stroke-linejoin="round">
+        <!-- lâminas -->
+        <line x1="24" y1="24" x2="40" y2="8" stroke-width="1.5"/>
+        <line x1="24" y1="24" x2="40" y2="40" stroke-width="1.5"/>
+        <!-- pivo -->
+        <circle cx="24" cy="24" r="2.8" stroke-width="1.4"/>
+        <!-- cabo superior -->
+        <ellipse cx="10" cy="11" rx="7" ry="5" transform="rotate(-35 10 11)" stroke-width="1.4"/>
+        <!-- cabo inferior -->
+        <ellipse cx="10" cy="37" rx="7" ry="5" transform="rotate(35 10 37)" stroke-width="1.4"/>
+        <!-- anel superior detalhe -->
+        <ellipse cx="10" cy="11" rx="3.5" ry="2.5" transform="rotate(-35 10 11)" stroke-width="1" stroke-opacity="0.5"/>
+        <!-- anel inferior detalhe -->
+        <ellipse cx="10" cy="37" rx="3.5" ry="2.5" transform="rotate(35 10 37)" stroke-width="1" stroke-opacity="0.5"/>
+      </g>
+    </svg>
+    <span class="mono-sm">SM</span>
+  </div>
+  <div class="hero-date">Abrindo as portas em <strong>21 de Junho</strong> — reserve o seu momento</div>
+  <div class="scroll-cue">
+    <span>Descubra</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ── COUNTDOWN ── -->
+<section class="countdown-section">
+  <div class="section-label">A abertura está chegando</div>
+  <div class="countdown-grid">
+    <div class="count-block"><span class="count-num serif" id="cd-days">00</span><span class="count-label">dias</span></div>
+    <div class="count-block"><span class="count-num serif" id="cd-hours">00</span><span class="count-label">horas</span></div>
+    <div class="count-block"><span class="count-num serif" id="cd-min">00</span><span class="count-label">minutos</span></div>
+    <div class="count-block"><span class="count-num serif" id="cd-sec">00</span><span class="count-label">segundos</span></div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ── SOBRE ── -->
+<div class="sobre">
+  <div class="sobre-text reveal">
+    <span class="overline">Sobre o Studio</span>
+    <h2>Uma experiência que <em>transforma</em></h2>
+    <p>
+      A Sara Mendes Studio de Beleza nasceu do propósito de transformar o cuidado pessoal em algo muito além de um serviço.
+      São 40 anos de experiência dedicado ao sonho de um espaço desenhado com intenção — cada detalhe arquitetônico, cada aroma, cada luz quente existe para você se sentir única.
+    </p>
+    <p>
+      Aqui não vendemos apenas procedimentos. Vendemos experiência, autoestima elevada, conforto sensorial e atendimento que realmente te enxerga.
+    </p>
+    <div style="margin-top:2.5rem; display:flex; gap:1.5rem; flex-wrap:wrap;">
+      <a href="#agenda" class="btn-gold">Reservar meu momento</a>
+    </div>
+  </div>
+  <div class="sobre-visual reveal">
+    <div class="sobre-accent"></div>
+    <div class="sobre-frame">
+      <div class="frame-corner tl"></div>
+      <div class="frame-corner tr"></div>
+      <div class="frame-corner bl"></div>
+      <div class="frame-corner br"></div>
+      <div class="frame-mono">SM</div>
+      <div class="frame-tag">Studio de Beleza · Est. 2026</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- ── SERVIÇOS ── -->
+<section class="servicos">
+  <div class="servicos-inner">
+    <div class="servicos-header reveal">
+      <div class="section-label">O que oferecemos</div>
+      <h2 class="serif">Serviços com <em style="font-style:italic;color:var(--gold)">alma e técnica</em></h2>
+    </div>
+    <div class="servicos-grid">
+      <div class="serv-card reveal">
+        <span class="serv-num">01</span>
+        <h3>Cabelo</h3>
+        <p>Cortes, colorações, tratamentos e finalização com produtos premium. Cada fio cuidado com a técnica que você merece.</p>
+      </div>
+      <div class="serv-card reveal">
+        <span class="serv-num">02</span>
+        <h3>Unhas</h3>
+        <p>Manicure, pedicure e nail art com acabamento impecável. Detalhes que revelam sua personalidade.</p>
+      </div>
+      <div class="serv-card reveal">
+        <span class="serv-num">03</span>
+        <h3>Estética Capilar</h3>
+        <p>Procedimentos para um cabelo luminoso e saudável. Protocolos modernos adaptados ao seu tipo de cabelo.</p>
+      </div>
+      <div class="serv-card reveal">
+        <span class="serv-num">04</span>
+        <h3>Sobrancelhas</h3>
+        <p>Design e micropigmentação que enquadram o olhar e revelam a harmonia do seu rosto.</p>
+      </div>
+      <div class="serv-card reveal">
+        <span class="serv-num">05</span>
+        <h3>Mega hair,</h3>
+        <p> Especialistas em alogamentos — cabelo preparado com amor e técnica para cada momento especial.</p>
+      </div>
+      <div class="serv-card reveal">
+        <span class="serv-num">06</span>
+        <h3>Pacotes VIP</h3>
+        <p>Experiências completas combinando serviços com atendimento exclusivo, café especial e ambiente reservado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ── EXPERIÊNCIA ── -->
+<section class="experiencia">
+  <div class="exp-header reveal">
+    <div class="section-label">O Ambiente</div>
+    <h2>Cada detalhe <em>pensado</em><br/>para você</h2>
+  </div>
+  <div class="exp-grid">
+    <div class="exp-item reveal">
+      <div class="exp-icon">🕯️</div>
+      <h3>Iluminação quente indireta</h3>
+      <p>LED suave e harmônico que envolve o ambiente em aconchego. Nenhum detalhe foi deixado ao acaso.</p>
+    </div>
+    <div class="exp-item reveal">
+      <div class="exp-icon">☕</div>
+      <h3>Café especial incluso</h3>
+      <p>Porque uma experiência premium começa no momento em que você entra. Seu conforto é nossa prioridade.</p>
+    </div>
+    <div class="exp-item reveal">
+      <div class="exp-icon">🌿</div>
+      <h3>Aromas e vegetação natural</h3>
+      <p>Um ambiente sensorial completo que equilibra sofisticação e naturalidade em cada canto do espaço.</p>
+    </div>
+    <div class="exp-item reveal">
+      <div class="exp-icon">✦</div>
+      <h3>Atendimento personalizado</h3>
+      <p>Boutique e intimista. Você nunca é mais uma cliente — é a protagonista da sua própria experiência.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ── OFERTA INAUGURAÇÃO ── -->
+<section class="oferta" id="oferta">
+  <div class="oferta-box reveal">
+    <div class="oferta-tag">Oferta de Inauguração · 21 de Junho de 2026</div>
+    <h2>Uma abertura para <em>celebrar você</em></h2>
+    <p>Para quem marcar presença na nossa inauguração, preparamos condições especiais e experiências exclusivas que não se repetem.</p>
+    <div class="oferta-beneficios">
+      <div class="beneficio"><span>✦</span> Desconto especial de inauguração</div>
+      <div class="beneficio"><span>✦</span> Café & welcome kit</div>
+      <div class="beneficio"><span>✦</span> Pacote VIP com condições únicas</div>
+      <div class="beneficio"><span>✦</span> Sorteio exclusivo no dia</div>
+      <div class="beneficio"><span>✦</span> Brindes para primeiras clientes</div>
+    </div>
+    <a href="#agenda" class="btn-gold">Quero garantir meu lugar</a>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ── FORMULÁRIO DE AGENDAMENTO ── -->
+<section class="agenda" id="agenda">
+  <div class="agenda-inner">
+    <div class="reveal">
+      <div class="section-label">Reserve seu momento</div>
+      <h2>Entre na nossa <em>lista especial</em></h2>
+      <p class="sub">Garanta prioridade no dia da inauguração. As vagas são limitadas e o atendimento será exclusivo para quem se inscrever com antecedência.</p>
+    </div>
+    <form class="reveal" id="leadForm" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <label>Seu nome completo</label>
+        <input type="text" placeholder="Como prefere ser chamada" required/>
+      </div>
+      <div class="form-group">
+        <label>WhatsApp</label>
+        <input type="tel" placeholder="(00) 00000-0000" required/>
+      </div>
+      <div class="form-group">
+        <label>Serviço de interesse</label>
+        <select required>
+          <option value="" disabled selected>Selecione um serviço</option>
+          <option>Cabelo</option>
+          <option>Unhas</option>
+          <option>Estética Facial</option>
+          <option>Sobrancelhas</option>
+          <option>Maquiagem</option>
+          <option>Pacote VIP</option>
+          <option>Quero conhecer tudo</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Como ficou sabendo? (opcional)</label>
+        <input type="text" placeholder="Instagram, indicação..."/>
+      </div>
+      <p class="form-note">
+        Ao enviar, você confirma interesse na lista de espera da inauguração. 
+        Nossa equipe entrará em contato pelo WhatsApp para confirmar seu horário.
+      </p>
+      <div class="form-submit" style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;">
+        <button type="submit" class="btn-gold" id="submitBtn">✦ Garantir minha vaga</button>
+        <a href="https://wa.me/5521979659081?text=Ol%C3%A1!%20Vi%20a%20inaugura%C3%A7%C3%A3o%20do%20Sara%20Mendes%20Studio%20e%20quero%20saber%20mais!" 
+           target="_blank" class="btn-outline">💬 Falar no WhatsApp</a>
+      </div>
+      <div id="formStatus" style="margin-top:1rem; font-size:.8rem; color:var(--muted); min-height:1.2rem;"></div>
+    </form>
+
+    <!-- SUCCESS STATE -->
+    <div id="successMsg" style="display:none; text-align:center; padding:3rem 0;">
+      <div style="font-family:'Cormorant Garamond',serif; font-size:3rem; color:var(--gold); margin-bottom:1rem;">✦</div>
+      <p class="serif" style="font-size:1.8rem; margin-bottom:.8rem;">Perfeito, <em style="color:var(--gold)">você está na lista</em></p>
+      <p style="color:var(--muted); font-size:.85rem; line-height:1.8;">
+        Entraremos em contato pelo WhatsApp para confirmar seu momento especial.<br/>
+        Até o dia 21 de Junho! 🤍
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-mono">SM</div>
+  <div class="footer-name serif">Sara Mendes</div>
+  <div class="footer-studio">Studio de Beleza</div>
+  <div class="footer-line"></div>
+  <div class="footer-copy">© 2026 · Todos os direitos reservados · Inauguração 21 de Junho</div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/5521979659081?text=Ol%C3%A1!%20Vi%20a%20inaugura%C3%A7%C3%A3o%20do%20Sara%20Mendes%20Studio!" 
+   target="_blank"
+   style="
+     position:fixed; bottom:2rem; right:2rem; z-index:400;
+     width:54px; height:54px; border-radius:50%;
+     background:#25D366; display:flex; align-items:center; justify-content:center;
+     text-decoration:none; font-size:1.5rem;
+     box-shadow:0 4px 20px rgba(37,211,102,.4);
+     transition:transform .3s;
+   "
+   onmouseenter="this.style.transform='scale(1.1)'"
+   onmouseleave="this.style.transform='scale(1)'"
+   title="Falar no WhatsApp">💬</a>
+
+<script>
+/* ── CURSOR ── */
+const cursor = document.getElementById('cursor');
+const ring   = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.transform = `translate(${mx-5}px,${my-5}px)`;
+});
+(function animRing(){
+  rx += (mx-rx-19)*.12; ry += (my-ry-19)*.12;
+  ring.style.transform = `translate(${rx}px,${ry}px)`;
+  requestAnimationFrame(animRing);
+})();
+
+/* ── COUNTDOWN ── */
+function updateCountdown() {
+  const target = new Date('2026-06-21T10:00:00');
+  const now    = new Date();
+  const diff   = target - now;
+  if (diff <= 0) {
+    document.querySelector('.countdown-section').innerHTML =
+      '<div class="section-label" style="font-size:1rem;letter-spacing:.1em">🎉 Hoje é o grande dia!</div>';
+    return;
+  }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000)  / 60000);
+  const s = Math.floor((diff % 60000)    / 1000);
+  document.getElementById('cd-days').textContent  = String(d).padStart(2,'0');
+  document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-min').textContent   = String(m).padStart(2,'0');
+  document.getElementById('cd-sec').textContent   = String(s).padStart(2,'0');
+}
+updateCountdown(); setInterval(updateCountdown, 1000);
+
+/* ── SCROLL REVEAL ── */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ══════════════════════════════════════════
+   CONFIGURAÇÃO — edite apenas estas 2 linhas:
+   ══════════════════════════════════════════ */
+const WHATSAPP_NUMBER = '5521979659081';   // seu número com DDI+DDD, ex: 5511999998888
+const SHEETS_URL      = 'https://script.google.com/macros/s/AKfycbzeGwvmCrozU4HV3jkGttp6wUNh2Snbj4ksnlTlK-DyW0f3N6ieRy48ZtJ05xB-PB8Y/exec'; // veja instruções abaixo
+/* ══════════════════════════════════════════ */
+
+async function handleSubmit(e) {
+  e.preventDefault();
+
+  const btn    = document.getElementById('submitBtn');
+  const status = document.getElementById('formStatus');
+  const form   = document.getElementById('leadForm');
+
+  // Coleta dados
+  const inputs  = form.querySelectorAll('input, select');
+  const nome     = inputs[0].value.trim();
+  const whatsapp = inputs[1].value.trim();
+  const servico  = inputs[2].value;
+  const origem   = inputs[3].value.trim() || '—';
+
+  // Estado de carregamento
+  btn.textContent = '⏳ Enviando...';
+  btn.disabled = true;
+  status.textContent = '';
+
+  // 1️⃣ Salvar na planilha
+  let sheetOk = false;
+  if (SHEETS_URL !== 'https://script.google.com/macros/s/AKfycbzeGwvmCrozU4HV3jkGttp6wUNh2Snbj4ksnlTlK-DyW0f3N6ieRy48ZtJ05xB-PB8Y/exec') {
+    try {
+      await fetch(SHEETS_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, whatsapp, servico, origem,
+          data: new Date().toLocaleString('pt-BR') })
+      });
+      sheetOk = true;
+    } catch(err) {
+      console.warn('Sheets error:', err);
+    }
+  }
+
+  // 2️⃣ Abrir WhatsApp com dados preenchidos
+  const msg = encodeURIComponent(
+    `✨ *Nova inscrição — Inauguração Sara Mendes*
+
+` +
+    `👤 *Nome:* ${nome}
+` +
+    `📱 *WhatsApp:* ${whatsapp}
+` +
+    `💅 *Serviço:* ${servico}
+` +
+    `🔍 *Como soube:* ${origem}`
+  );
+  setTimeout(() => {
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
+  }, 400);
+
+  // 3️⃣ Mostrar tela de sucesso
+  form.style.display = 'none';
+  document.getElementById('successMsg').style.display = 'block';
+}
+</script>
+</body>
+</html>
